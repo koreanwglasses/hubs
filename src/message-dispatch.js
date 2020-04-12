@@ -148,6 +148,15 @@ export default class MessageDispatch {
           window.APP.store.state.preferences.audioOutputMode = "panner";
           this.log("Positional Audio enabled.");
         }
+        break;
+      case "monitoring":
+        if (window.APP.store.state.preferences.enableMonitoring) {
+          window.APP.store.state.preferences.enableMonitoring = false;
+          this.log("Monitoring disabled.");
+        } else {
+          window.APP.store.state.preferences.enableMonitoring = true;
+          this.log("Monitoring enabled.");
+        }
     }
   };
 }

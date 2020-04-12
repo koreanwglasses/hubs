@@ -112,6 +112,21 @@ AFRAME.registerComponent("audio-source", {
         networkedAudioSource.sound.setNodeSource(soundSource);
         networkedAudioSource.el.emit("sound-source-set", { soundSource });
       }
+
+      // Probably not the most robust method of checking if the audio source is
+      // the current player.
+      const isLoopback = networkedAudioSource.el.id === "avatar-head";
+
+      // Self-monitoring settings
+      if (isLoopback) {
+        const monitoringEnabled = window.APP.store.state.preferences.enableMonitoring;
+        if (!monitoringEnabled && networkedAudioSource.sound.getVolume()) {
+          networkedAudioSource.sound.setVolume(0);
+        }
+        if (monitoringEnabled && !networkedAudioSource.sound.getVolume()) {
+          networkedAudioSource.sound.setVolume(1);
+        }
+      }
     }
   },
 
