@@ -1221,7 +1221,13 @@
                     </a-entity>
                 </template>
                 <template data-name="Head">
-                    <a-entity id="avatar-head" visible="false" bone-visibility></a-entity>
+                    <a-entity 
+                        id="avatar-head"
+                        visible="false"
+                        bone-visibility
+                        audio-source="type: avatar"
+                        networked-audio-source=""
+                    ></a-entity>
                 </template>
 
                 <template data-name="LeftHand">
